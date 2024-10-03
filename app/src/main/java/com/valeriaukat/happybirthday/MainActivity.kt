@@ -3,6 +3,7 @@ package com.valeriaukat.happybirthday
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,11 +14,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.valeriaukat.happybirthday.ui.theme.HappyBirthdayTheme
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 
 // Kelas utama yang menjalankan aplikasi
 class MainActivity : ComponentActivity() {
@@ -32,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background // Mengatur warna latar belakang
                 ) {
                     // Menampilkan pesan ucapan selamat ulang tahun
-                    GreetingText(
+                    GreetingImage(
                         message = "Happy Birthday Valeria!", // Pesan ucapan
                         from = "From Elen", // Nama pengirim
                         modifier = Modifier.padding(8.dp) // Menambahkan padding di sekitar teks
@@ -73,7 +77,27 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 @Composable
 fun BirthdayCardPreview() {
     HappyBirthdayTheme { // Mengaplikasikan tema yang sama untuk pratinjau
+        GreetingImage(
         // Menampilkan pratinjau dengan pesan dan pengirim yang sama
-        GreetingText(message = "Happy Birthday Valeria", from = "From Elen")
+        message = "Happy Birthday Valeria", from = "From Elen")
+    }
+}
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.anjing)
+    Box(modifier) {
+        Image(
+            painter = image,
+            contentDescription = null
+                    contentScale = ContentScale.Crop,
+            alpha = 0.5F
+        )
+        GreetingText(
+            message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
     }
 }
