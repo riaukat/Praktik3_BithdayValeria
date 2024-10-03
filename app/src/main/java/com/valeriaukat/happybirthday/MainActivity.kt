@@ -19,53 +19,61 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.valeriaukat.happybirthday.ui.theme.HappyBirthdayTheme
 
+// Kelas utama yang menjalankan aplikasi
 class MainActivity : ComponentActivity() {
+    // Metode onCreate dipanggil saat aktivitas dimulai
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            HappyBirthdayTheme {
-                // A surface container using the 'background' color from the theme
+        super.onCreate(savedInstanceState) // Memanggil metode superclass untuk inisialisasi
+        setContent { // Menetapkan konten UI untuk aktivitas ini
+            HappyBirthdayTheme { // Mengaplikasikan tema untuk aplikasi
+                // Menggunakan Surface sebagai kontainer dengan warna latar belakang dari tema
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(),// Mengisi seluruh ukuran layar
+                    color = MaterialTheme.colorScheme.background // Mengatur warna latar belakang
                 ) {
+                    // Menampilkan pesan ucapan selamat ulang tahun
                     GreetingText(
-                        message = "Happy Birthday Valeria!",
-                        from = "From Elen",
-                        modifier = Modifier.padding(8.dp)
+                        message = "Happy Birthday Valeria!", // Pesan ucapan
+                        from = "From Elen", // Nama pengirim
+                        modifier = Modifier.padding(8.dp) // Menambahkan padding di sekitar teks
                     )
                 }
             }
         }
     }
 }
-
+// Fungsi Composable untuk menampilkan teks ucapan
 @Composable
 fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    // Menggunakan Column untuk menata teks secara vertikal
     Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
+        verticalArrangement = Arrangement.Center, // Mengatur isi kolom di tengah secara vertikal
+        modifier = modifier // Menggunakan modifier yang diteruskan
     ) {
+        // Menampilkan pesan utama
         Text(
-            text = message,
-            fontSize = 100.sp,
-            lineHeight = 116.sp,
-            textAlign = TextAlign.Center
+            text = message, // Teks ucapan
+            fontSize = 100.sp, // Ukuran font
+            lineHeight = 116.sp, // Tinggi baris
+            textAlign = TextAlign.Center // Menyusun teks di tengah
         )
+        // Menampilkan nama pengirim
         Text(
-            text = from,
-            fontSize = 36.sp,
+            text = from, // Teks pengirim
+            fontSize = 36.sp, // Ukuran font untuk pengirim
             modifier = Modifier
-                .padding(16.dp)
-                .align(alignment = Alignment.End)
+                .padding(16.dp) // Menambahkan padding di sekitar teks pengirim
+                .align(alignment = Alignment.End) // Menyusun teks pengirim ke kanan
         )
     }
 }
 
+// Fungsi untuk menampilkan pratinjau dari GreetingText dalam IDE
 @Preview(showBackground = true)
 @Composable
 fun BirthdayCardPreview() {
-    HappyBirthdayTheme {
+    HappyBirthdayTheme { // Mengaplikasikan tema yang sama untuk pratinjau
+        // Menampilkan pratinjau dengan pesan dan pengirim yang sama
         GreetingText(message = "Happy Birthday Valeria", from = "From Elen")
     }
 }
